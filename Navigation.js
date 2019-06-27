@@ -1,18 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, FlatList, Animated } from 'react-native';
 import { createStackNavigator, createAppContainer} from "react-navigation";
-import Navigation from './Navigation';
+import Animation1Screen from "./screens/Animation1";
+import HomeScreen from "./screens/Home";
 
-console.disableYellowBox = true;
-
-export default class App extends React.Component {
-
-    render() {
-        return (
-            <Navigation/>
-        );
+const MainStack = createStackNavigator(
+	{
+        Home: {
+            screen: HomeScreen,
+        },
+        Animation1: {
+            screen: Animation1Screen,
+            navigationOptions: ({ navigation }) => ({
+                headerTitle: 'Animation 1',
+            })
+        },
+	},
+	{
+        initialRouteName: 'Home',
     }
-}
+);
+
+export default createAppContainer(MainStack)
 
 const styles = StyleSheet.create({
     container: {
